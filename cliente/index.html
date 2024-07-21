@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Olá Mundo</h1>
+    </div>
+    <div>
+        <style>
+            #envi{position: fixed;top:90%}
+        </style>
+        <ul class="list-group"></ul>
+        <form action="">
+            <div id="envi">
+                <input type="text" placeholder="digite sua mensagem" class="form-control">
+                <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>            
+        </form>
+    </div>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io()
+        const form = document.querySelector('form')
+        const input = document.querySelector('input')
+        let mensagem = document.querySelector('ul')
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            if(input.value){
+                socket.emit('chat',input.value)
+                input.value=''
+            }
+        })
+        socket.on('chat',(msg)=>{
+           let item = document.createElement('li')
+            item.textContent = msg
+            mensagem.appendChild(item)
+            window.scrollto(0,document.body.scrollHeight)
+        })
+    </script>
+</body>
+</html>
