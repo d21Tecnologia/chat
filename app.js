@@ -19,7 +19,7 @@ io.on('connection',(socket)=>{
 app.get('/', (req,res)=>{
    // res.send('olá mundo')
    //console.log(__dirname)
-   res.sendFile(`${__dirname}/cliente/index.html`)
+   res.sendFile(`https://d21tecnologia.com.br/chat/index.html`)
 })
 server.listen(3000, ()=>{
     console.log('Servidor conectado em http://localhost:3000')    
